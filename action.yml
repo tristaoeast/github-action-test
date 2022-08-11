@@ -1,0 +1,13 @@
+name: "RegEx extractor"
+description: "Gives this job access to private terraform modules."
+inputs:
+  input_text:
+    required: true
+  regex:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: SET JIRA_TICKET to COMPASS-1569
+      run: echo "JIRA_TICKET=$(echo "refs/heads/task#COMPASS-1569_Implement_GitHub_Actions_pipeline_that_runs_Integration_tests" | sed -r 's/.*(COMPASS-[0-9]+)[-_].*/\1/')" >> $GITHUB_ENV
+      shell: sh
